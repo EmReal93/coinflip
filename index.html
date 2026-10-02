@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Clickable page</title>
+
+
+<style>
+	body{
+		background-color:#DD571C;
+		text-align: center;
+		font-family: Merriweather, serif;
+		letter-spacing: 2px;
+		padding:5px;
+	}
+
+
+.questionOne{
+	font-size: 100px;
+	display:grid;
+	place-items: center;
+}
+
+#heads{
+	background-color: whitesmoke;
+	font-size:45px;
+	width:180px;
+	height:auto;
+	padding:5px;
+	margin:50px;
+	border-radius:35px;
+	border:double black;
+	cursor:pointer;
+}
+#heads:hover {
+	color:whitesmoke;
+	text-decoration:none;
+	background-color:#7A4B3D;
+}
+
+#tails{
+	background-color: whitesmoke;
+	font-size:45px;
+	width:180px;
+	height:auto;
+	padding:5px;
+	margin:50px;
+	border-radius:35px;
+	border:double black;
+	cursor:pointer;
+}
+#tails:hover {
+	color:whitesmoke;
+	text-decoration:none;
+	background-color:#7A4B3D;
+}
+
+#coinFlip{
+	display:grid;
+	place-items: center;
+
+}
+
+
+#coin{
+	background-color:#E1B530;
+	font-size:45px;
+	width:250px;
+	height:250px;
+	padding:5px;
+	border-radius:50%;
+	border:double black 15px;
+	cursor:pointer;
+	display:flex;
+	align-items: center;
+	justify-content: center;
+	position:relative;
+	
+	
+
+}
+.coin{
+	animation: spin 1s ease-in-out;
+}
+
+@keyframes spin {
+	from {
+		transform: rotateY(0deg);
+	}
+
+	to {
+		transform: rotateY(1800deg);
+	}
+}
+
+
+
+</style>
+</head>
+
+<body>
+<main>
+
+	<h1 class="questionOne">Lets Play a Game!</h1>
+
+	<div id=coinFlip>
+
+	
+	<div id=coin> 
+		Heads<br>
+		~<br>
+		Tails </div>
+
+</div>
+	
+	<button id="heads" >Heads</button>
+
+	<button id="tails">Tails</button>
+
+
+
+</main>
+
+
+<script>
+
+/*
+1.select either heads or tails.
+
+2.when the button is clicked 2 functions are activated.
+
+3.inside the first function a class is added to make the coin animate, generate a random number,and triggers an alert  depending on the result.
+
+4.inside the seccond function the background color changes to a random color.
+
+*/	
+
+//variables
+
+let heads = document.getElementById('heads');
+
+let tails = document.getElementById('tails');
+
+let coin = document.getElementById('coin');
+
+let playerChoice
+
+let result 
+
+let gameBegin = false
+
+
+//game functions
+
+function changeBackground(){
+	const randomColor="#"+Math.random().toString(16).slice(2,8);
+	document.body.style.backgroundColor=randomColor;
+}
+
+function playGame () {
+
+	let probibility = Math.random();
+
+	if (playerChoice === "head" && probibility >0.5){
+		alert ("You Win!");
+	}else if (playerChoice==="tail" && probibility<0.5){
+		alert("You Win!");
+	}else{
+		alert ("You Lose!");
+	}
+	coin.classList.remove("coin");
+}
+
+
+
+heads.addEventListener('click', function(e) {
+	coin.classList.toggle('coin')
+	playerChoice="head"
+
+	setTimeout(() => {
+		playGame()	
+	}, 1500)
+	changeBackground();
+
+	
+	
+
+});
+
+tails.addEventListener('click', function(e) {
+	coin.classList.toggle('coin')
+	playerChoice="tail"
+	
+	setTimeout(() => {
+		playGame()	
+	}, 1500)
+	changeBackground();
+
+});
+
+
+
+
+
+
+</script>
+</body>
+</html>
